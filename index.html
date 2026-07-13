@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#080d13" />
+  <meta name="description" content="Kung-Fu: Imperial Guards is a cinematic browser platform-fighter. Infiltrate Moon Gate Fortress, recover the Imperial Seals and defeat the Crimson Captain." />
+  <meta property="og:title" content="Kung-Fu: Imperial Guards" />
+  <meta property="og:description" content="Infiltrate. Fight. Survive. Become legend." />
+  <meta property="og:image" content="assets/key-art.svg" />
+  <meta property="og:type" content="website" />
+  <title>Kung-Fu: Imperial Guards</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app" aria-label="Kung-Fu: Imperial Guards game">
+    <section id="game-shell">
+      <canvas id="game" width="1280" height="720" aria-label="Game canvas"></canvas>
+
+      <div id="cinematic-bars" aria-hidden="true"><span></span><span></span></div>
+      <div id="flash" aria-hidden="true"></div>
+
+      <header id="hud" class="hidden" aria-label="Game status">
+        <div class="hud-card player-card">
+          <div class="portrait"><span>影</span></div>
+          <div class="hud-stack">
+            <div class="hud-line"><strong>WANDERER</strong><span id="score">000000</span></div>
+            <div class="meter health"><i id="health-fill"></i></div>
+            <div class="meter chi"><i id="chi-fill"></i></div>
+          </div>
+        </div>
+        <div class="hud-card objective-card">
+          <span class="seal-emblem">印</span>
+          <div><small>IMPERIAL SEALS</small><strong id="seal-count">0 / 5</strong></div>
+        </div>
+        <div class="hud-card combo-card"><small>COMBO</small><strong id="combo">—</strong></div>
+        <button id="pause-button" class="icon-button" aria-label="Pause game">Ⅱ</button>
+      </header>
+
+      <div id="boss-hud" class="hidden">
+        <div class="boss-label"><span>CRIMSON CAPTAIN</span><small>WARDEN OF THE MOON GATE</small></div>
+        <div class="boss-meter"><i id="boss-fill"></i></div>
+      </div>
+
+      <div id="objective" class="hidden"><span id="objective-text">Recover the five Imperial Seals</span></div>
+      <div id="toast" role="status" aria-live="polite"></div>
+
+      <section id="title-screen" class="screen active">
+        <div class="key-art"></div>
+        <div class="title-vignette"></div>
+        <div class="title-copy">
+          <img src="assets/logo.svg" class="logo" alt="Kung-Fu: Imperial Guards" />
+          <p class="tagline">INFILTRATE. FIGHT. SURVIVE. BECOME LEGEND.</p>
+          <div class="menu-buttons">
+            <button id="start-button" class="primary">BEGIN THE INFILTRATION</button>
+            <button id="story-button">THE STORY</button>
+            <button id="controls-button">HOW TO PLAY</button>
+          </div>
+          <p class="micro">Keyboard · Controller-ready layout · Touch controls</p>
+        </div>
+        <div class="title-footer"><span>AN ORIGINAL CINEMATIC PLATFORM-FIGHTER</span><span id="best-score">BEST 000000</span></div>
+      </section>
+
+      <section id="story-screen" class="screen panel-screen">
+        <article class="scroll-panel">
+          <span class="eyebrow">THE FALL OF THE MOON GATE</span>
+          <h1>Five seals. One fortress. No way back.</h1>
+          <p>The corrupt Governor Jian has seized the Imperial Seals and placed the mountain provinces under martial law. His elite guards occupy Moon Gate Fortress, a citadel of hidden passages, flame traps and rooftop watchtowers.</p>
+          <p>You are the last student of the Cloud Hand school. Enter under moonlight, recover the seals and confront the Crimson Captain before dawn.</p>
+          <button class="back-button">RETURN</button>
+        </article>
+      </section>
+
+      <section id="controls-screen" class="screen panel-screen">
+        <article class="scroll-panel wide">
+          <span class="eyebrow">MASTER THE CLOUD HAND</span>
+          <h1>Controls</h1>
+          <div class="control-grid">
+            <div><kbd>A</kbd><kbd>D</kbd><b>Move</b><small>Arrow keys also work</small></div>
+            <div><kbd>W</kbd><kbd>S</kbd><b>Climb</b><small>Use ladders and ropes</small></div>
+            <div><kbd>SPACE</kbd><b>Jump</b><small>Kick while airborne</small></div>
+            <div><kbd>J</kbd><b>Punch</b><small>Fast combo starter</small></div>
+            <div><kbd>K</kbd><b>Kick</b><small>Longer reach and power</small></div>
+            <div><kbd>L</kbd><b>Chi strike</b><small>Consumes the blue meter</small></div>
+            <div><kbd>SHIFT</kbd><b>Dash</b><small>Evade and close distance</small></div>
+            <div><kbd>ESC</kbd><b>Pause</b><small>Resume or restart</small></div>
+          </div>
+          <button class="back-button">RETURN</button>
+        </article>
+      </section>
+
+      <section id="pause-screen" class="screen panel-screen">
+        <article class="scroll-panel compact">
+          <span class="eyebrow">MOON GATE FORTRESS</span>
+          <h1>Paused</h1>
+          <button id="resume-button" class="primary">RESUME</button>
+          <button id="restart-button">RESTART STAGE</button>
+          <button id="quit-button">RETURN TO TITLE</button>
+        </article>
+      </section>
+
+      <section id="result-screen" class="screen panel-screen">
+        <article class="scroll-panel compact result-panel">
+          <span id="result-eyebrow" class="eyebrow">FORTRESS BREACHED</span>
+          <h1 id="result-title">Victory</h1>
+          <p id="result-copy">The seals are safe. Dawn returns to the mountain provinces.</p>
+          <div class="result-stats">
+            <div><small>SCORE</small><strong id="result-score">0</strong></div>
+            <div><small>BEST COMBO</small><strong id="result-combo">0</strong></div>
+            <div><small>TIME</small><strong id="result-time">00:00</strong></div>
+          </div>
+          <button id="again-button" class="primary">PLAY AGAIN</button>
+          <button id="result-title-button">RETURN TO TITLE</button>
+        </article>
+      </section>
+
+      <div id="touch-controls" class="hidden" aria-label="Touch controls">
+        <div class="touch-move">
+          <button data-control="left" aria-label="Move left">◀</button>
+          <button data-control="right" aria-label="Move right">▶</button>
+          <button data-control="up" aria-label="Climb up">▲</button>
+          <button data-control="down" aria-label="Climb down">▼</button>
+        </div>
+        <div class="touch-action">
+          <button data-control="jump" class="jump">跳</button>
+          <button data-control="punch">拳</button>
+          <button data-control="kick">脚</button>
+          <button data-control="chi" class="chi-action">気</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="game.js" defer></script>
+</body>
+</html>
