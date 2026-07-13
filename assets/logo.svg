@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 310" role="img" aria-label="Kung-Fu Imperial Guards logo">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff1a5"/><stop offset=".42" stop-color="#e5b54d"/><stop offset="1" stop-color="#8a4517"/></linearGradient>
+    <filter id="s"><feDropShadow dx="8" dy="12" stdDeviation="5" flood-color="#000" flood-opacity=".9"/></filter>
+  </defs>
+  <g filter="url(#s)">
+    <path d="M31 53l45 9-14 25 23 3-26 30 24 7-39 42 11-35-29-2 27-31-24-5 25-24zM787 51l-45 9 14 25-23 3 26 30-24 7 39 42-11-35 29-2-27-31 24-5-25-24z" fill="#b33a1f"/>
+    <text x="410" y="151" text-anchor="middle" font-family="Georgia,serif" font-size="145" font-weight="900" font-style="italic" letter-spacing="-10" fill="url(#g)" stroke="#2a1209" stroke-width="10" paint-order="stroke">KUNG-FU</text>
+    <path d="M101 179l604-18-42 97-535 12z" fill="#a51e17" stroke="#250907" stroke-width="8"/>
+    <text x="407" y="239" text-anchor="middle" font-family="Georgia,serif" font-size="57" font-weight="900" font-style="italic" letter-spacing="4" fill="#f1d5a0" stroke="#350b08" stroke-width="5" paint-order="stroke">IMPERIAL GUARDS</text>
+    <path d="M110 276h590" stroke="#d6a545" stroke-width="4"/><path d="M242 292h336" stroke="#7e2a18" stroke-width="5"/>
+  </g>
+</svg>
