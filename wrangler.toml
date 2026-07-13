@@ -1,3 +1,6 @@
 name = "kung-fu-imperial-guards"
 compatibility_date = "2026-07-13"
-pages_build_output_dir = "dist"
+
+# This repository is already a deployable static site. Cloudflare Pages can
+# publish the repository root directly, so no build command or dist folder is required.
+pages_build_output_dir = "."
