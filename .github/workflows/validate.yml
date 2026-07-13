@@ -1,0 +1,38 @@
+name: Validate Game Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: node --check game.js
+      - name: Verify required production files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f game.js
+          test -f assets/key-art.svg
+          test -f assets/logo.svg
+          test -f assets/icon.svg
+          test -f manifest.webmanifest
+          test -f sw.js
+      - name: Build production bundle
+        run: |
+          mkdir -p dist/assets
+          cp index.html styles.css game.js manifest.webmanifest sw.js _headers _redirects dist/
+          cp -R assets/. dist/assets/
+          test -s dist/index.html
+          test -s dist/game.js
